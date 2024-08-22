@@ -26,9 +26,12 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.StarBorder
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardColors
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -49,10 +52,14 @@ fun ReplyEmailListItem(
     navigateToDetail: (Long) -> Unit
 ) {
     Card(
-        modifier =  modifier
+        modifier = modifier
             .padding(horizontal = 16.dp, vertical = 4.dp)
             .semantics { selected = isSelected }
             .clickable { navigateToDetail(email.id) },
+        colors = CardDefaults.cardColors(
+            containerColor = if (email.isImportant) MaterialTheme.colorScheme.secondaryContainer
+            else MaterialTheme.colorScheme.surfaceVariant
+        )
     ) {
         Column(
             modifier = Modifier
@@ -71,9 +78,12 @@ fun ReplyEmailListItem(
                     verticalArrangement = Arrangement.Center
                 ) {
                     Text(
+                        style = MaterialTheme.typography.labelMedium,
                         text = email.sender.firstName,
                     )
                     Text(
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        style = MaterialTheme.typography.labelMedium,
                         text = email.createdAt,
                     )
                 }
@@ -91,11 +101,14 @@ fun ReplyEmailListItem(
             }
 
             Text(
+                style = MaterialTheme.typography.titleLarge,
                 text = email.subject,
                 modifier = Modifier.padding(top = 12.dp, bottom = 8.dp),
             )
             Text(
+                style = MaterialTheme.typography.bodyLarge,
                 text = email.body,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis
             )

@@ -16,6 +16,7 @@
 
 package com.example.reply.ui.components
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -48,6 +49,7 @@ fun ReplyEmailThreadItem(
         modifier = modifier
             .fillMaxWidth()
             .padding(16.dp)
+            .background(MaterialTheme.colorScheme.background, MaterialTheme.shapes.medium)
             .padding(20.dp)
     ) {
         Row(modifier = Modifier.fillMaxWidth()) {
@@ -62,9 +64,11 @@ fun ReplyEmailThreadItem(
                 verticalArrangement = Arrangement.Center
             ) {
                 Text(
+                    style = MaterialTheme.typography.labelMedium,
                     text = email.sender.firstName,
                 )
                 Text(
+                    style = MaterialTheme.typography.labelMedium,
                     text = stringResource(id = R.string.twenty_mins_ago),
                 )
             }
@@ -82,11 +86,13 @@ fun ReplyEmailThreadItem(
         }
 
         Text(
+            style = MaterialTheme.typography.bodyMedium,
             text = email.subject,
             modifier = Modifier.padding(top = 12.dp, bottom = 8.dp),
         )
 
         Text(
+            style = MaterialTheme.typography.bodyLarge,
             text = email.body,
         )
         Row(
