@@ -282,7 +282,10 @@ fun ReplyTheme(
     if (!view.isInEditMode) {
         val window = (view.context as Activity).window
         window.statusBarColor = replyColorScheme.primary.toArgb()
+        window.navigationBarColor = replyColorScheme.primary.toArgb()
         WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = darkTheme
+        WindowCompat.getInsetsController(window, view).isAppearanceLightNavigationBars = darkTheme
+
     }
     MaterialTheme(
         colorScheme = replyColorScheme,

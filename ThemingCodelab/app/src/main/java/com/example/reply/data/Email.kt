@@ -17,6 +17,7 @@
 package com.example.reply.data
 
 import androidx.annotation.DrawableRes
+import androidx.compose.runtime.mutableStateOf
 
 /**
  * A simple data class to represent an Email.
@@ -32,8 +33,11 @@ data class Email(
     var isStarred: Boolean = false,
     var mailbox: MailboxType = MailboxType.INBOX,
     val createdAt: String,
-    val threads: List<Email> = emptyList()
-)
+    val threads: List<Email> = emptyList(),
+) {
+    val isExpandedState = mutableStateOf(false)
+    val showButton = mutableStateOf(false)
+}
 
 enum class MailboxType {
     INBOX, DRAFTS, SENT, SPAM, TRASH

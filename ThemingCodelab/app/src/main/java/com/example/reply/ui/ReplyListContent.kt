@@ -146,7 +146,16 @@ fun ReplyEmailDetail(
             }
         }
         items(items = email.threads, key = { it.id }) { email ->
-            ReplyEmailThreadItem(email = email)
+            ReplyEmailThreadItem(
+                email = email,
+                isExpanded = email.isExpandedState.value,
+                showButton = email.showButton.value,
+                changeButtonVisibility = {
+                    email.showButton.value = it
+                },
+                onTextClicked = {
+                    email.isExpandedState.value = !email.isExpandedState.value
+                })
         }
     }
 }
